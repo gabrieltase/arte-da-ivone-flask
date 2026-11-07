@@ -1,0 +1,159 @@
+ header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body {
+  width: 85%;
+  margin: 2%;
+  margin-left: 7%;
+  margin-right: 5%;
+}
+
+nav ul {
+  display: flex;
+  gap: 3%;
+  list-style: none;
+  margin: 0%;
+  padding: 0%;
+}
+
+.divCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.divCards .card {
+  width: 48%;
+  margin: 1%;
+  padding: 15px;
+
+  box-sizing: border-box;
+
+  border: none;
+  border-radius: 20px;
+
+  text-align: center;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial;
+  background-color: rgb(247, 247, 245);
+}
+
+header img {
+  width: 25%;
+  height: auto;
+  margin: 2%;
+}
+
+.form-group {
+  margin-bottom: 20%;
+}
+
+input,
+textarea {
+  width: 30%;
+  padding: 5%;
+  margin: 1%;
+  box-sizing: border-box;
+  border: 2px solid pink;
+  border-radius: 25%;
+  text-align: center;
+}
+
+.btn-rosa {
+  background-color: #e83e8c;
+  border-color: #e83e8c;
+  color: white;
+}
+
+.btn-rosa:hover {
+  background-color: #d63384;
+  border-color: #d63384;
+  color: white;
+}
+
+.card {
+  border: none;
+  border-radius: 20px;
+  background-color: blanchedalmond;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.card-body {
+  padding: 25px;
+  
+}
+
+.card-title {
+  color: #e83e8c;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.card-text {
+  color:black;
+  line-height: 1.6;
+}
+
+.logo {
+  width: 40%;
+  height: auto;
+  border-radius: 0%;
+  transition: 0.3s;
+}
+
+
+
+
+
+.fotoArtesanato {
+    width: 100%;
+    max-width: 600px;
+    height: 350px;
+
+   
+    object-fit: cover;
+
+   
+    border-radius: 20px;
+
+   
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
+
+   
+    filter: brightness(1.05) contrast(1.05) saturate(1.10);
+
+}
+
+.fotoArtesanato:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
+}
+
+
+/* Flask: destaque do item ativo da navbar (única regra nova) */
+.btn-rosa[aria-current="page"] {
+  background-color: #d63384;
+  border-color: #d63384;
+}

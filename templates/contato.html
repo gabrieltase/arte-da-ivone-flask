@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block titulo %}Artes da Ivone - Contato{% endblock %}
+
+{% block conteudo %}
+<section class="contato" id="contato">
+  <h1 class="display-4 fw-bold text-center">Entre em Contato</h1>
+  <p class="lead text-center text-muted">
+    Gostou de Alguma Peça Entre em Contado Comigo
+  </p>
+
+  {# Mensagens enviadas com flash() no app.py (Cap. 8.3) #}
+  {% with mensagens = get_flashed_messages(with_categories=true) %}
+    {% for categoria, texto in mensagens %}
+      <div class="alert alert-{{ categoria }} text-center mx-auto" style="max-width: 600px">
+        {{ texto }}
+      </div>
+    {% endfor %}
+  {% endwith %}
+
+  <form method="post" action="{{ url_for('contato') }}">
+    <div class="card shadow p-4 mx-auto" style="max-width: 600px">
+      <h2 class="text-center mb-4">Entre em Contato</h2>
+
+      <p class="text-center text-muted mb-4">
+        Gostou de alguma peça? Entre em contato conosco!
+      </p>
+
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome:</label>
+        <input type="text" id="nome" name="nome" class="form-control"
+               placeholder="Digite seu nome" />
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail:</label>
+        <input type="email" id="email" name="email" class="form-control"
+               placeholder="Digite seu e-mail" />
+      </div>
+
+      <div class="mb-3">
+        <label for="mensagem" class="form-label">Mensagem:</label>
+        <textarea id="mensagem" name="mensagem" class="form-control" rows="5"
+                  placeholder="Digite sua mensagem"></textarea>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-rosa btn-lg px-4">
+          Enviar Mensagem
+        </button>
+      </div>
+    </div>
+  </form>
+</section>
+{% endblock %}

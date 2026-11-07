@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block titulo %}Artes da Ivone{% endblock %}</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  </head>
+  <body>
+    <header>
+      <img
+        src="{{ url_for('static', filename='img/logo_2.png') }}"
+        alt="logotipo do site"
+        class="logo img-fluid"
+      />
+      <header class="topo">
+        <div class="top">
+          <nav class="menu nav justify-content-center gap-2">
+            {# request.endpoint = nome da função da rota atual (ex.: 'home') #}
+            <a href="{{ url_for('home') }}" class="nav-link btn btn-rosa"
+               {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>Home</a>
+            <a href="{{ url_for('sobre') }}" class="nav-link btn btn-rosa"
+               {% if request.endpoint == 'sobre' %}aria-current="page"{% endif %}>Sobre</a>
+            <a href="{{ url_for('produtos') }}" class="nav-link btn btn-rosa"
+               {% if request.endpoint == 'produtos' %}aria-current="page"{% endif %}>Produtos</a>
+            <a href="{{ url_for('contato') }}" class="nav-link btn btn-rosa"
+               {% if request.endpoint == 'contato' %}aria-current="page"{% endif %}>Contato</a>
+          </nav>
+        </div>
+      </header>
+    </header>
+
+    {% block conteudo %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+  </body>
+</html>
