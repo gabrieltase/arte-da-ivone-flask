@@ -1,51 +1,49 @@
 {% extends "base.html" %}
 
-{% block titulo %}Artes da Ivone - Sobre{% endblock %}
+{% block titulo %}Sobre | Artes da Ivone{% endblock %}
 
 {% block conteudo %}
-<section>
-  <h2 class="display-4 fw-bold text-center">Sobre Mim</h2>
-  <p class="lead text-center text-muted">
-    Conheça mais um pouco sobre minhas artes
-  </p>
-  <div class="divCards row g-4">
+<h1 class="display-4 fw-bold text-center">Sobre Mim</h1>
+<p class="lead text-center text-muted mb-4">Conheça mais um pouco sobre minhas artes</p>
 
-    <div class="card col-12 col-md-6 col-lg-3">
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+  <div class="col">
+    <div class="card h-100">
       <div class="card-body">
-        <h3 class="card-title">Sobre Mim</h3>
-        <p class="card-text">
-          Sou uma costureira especializada em Artesanato e Bordados.
-        </p>
+        <h2 class="card-title h3">Sobre Mim</h2>
+        <p class="card-text">Sou uma costureira especializada em Artesanato e Bordados.</p>
       </div>
     </div>
-
-    <div class="card col-12 col-md-6 col-lg-3">
-      <div class="card-body">
-        <h3 class="card-title">Onde estou Localizada</h3>
-        <p class="card-text">
-          Estou localizada aos domingos na praça do aquários das 8:00 horas da manhã até às 14:00 horas da tarde.
-        </p>
-      </div>
-    </div>
-
-    <div class="card col-12 col-md-6 col-lg-3">
-      <div class="card-body">
-        <h3 class="card-title">Faço Encomendas</h3>
-        <p class="card-text">
-          Para que você faça uma encomenda comigo entre em contato.
-        </p>
-      </div>
-    </div>
-
-    <div class="card col-12 col-md-6 col-lg-3">
-      <div class="card-body">
-        <h3 class="card-title">Social Media</h3>
-        <p class="card-text">
-          Instagram @*********** Facebook ************* telefone 12 *****-****
-        </p>
-      </div>
-    </div>
-
   </div>
-</section>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title h3">Onde estou Localizada</h2>
+        <p class="card-text">Estou localizada aos domingos na Praça do Aquário, das 8h às 14h.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title h3">Faço Encomendas</h2>
+        <p class="card-text">Para fazer uma encomenda comigo, entre em contato.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h2 class="card-title h3">Contato</h2>
+        <p class="card-text">
+          WhatsApp:<br />
+          <a href="https://wa.me/5512988635412" target="_blank" rel="noopener">(12) 98863-5412</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

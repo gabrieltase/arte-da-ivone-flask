@@ -1,55 +1,73 @@
 {% extends "base.html" %}
 
-{% block titulo %}Artes da Ivone - Contato{% endblock %}
+{% block titulo %}Contato | Artes da Ivone{% endblock %}
 
 {% block conteudo %}
-<section class="contato" id="contato">
-  <h1 class="display-4 fw-bold text-center">Entre em Contato</h1>
-  <p class="lead text-center text-muted">
-    Gostou de Alguma Peça Entre em Contado Comigo
-  </p>
+<h1 class="display-4 fw-bold text-center mb-4">Gostou de algo? Entre em contato comigo</h1>
 
-  {# Mensagens enviadas com flash() no app.py (Cap. 8.3) #}
-  {% with mensagens = get_flashed_messages(with_categories=true) %}
-    {% for categoria, texto in mensagens %}
-      <div class="alert alert-{{ categoria }} text-center mx-auto" style="max-width: 600px">
-        {{ texto }}
-      </div>
-    {% endfor %}
-  {% endwith %}
+<div class="row g-4 justify-content-center">
+  <div class="col-lg-5">
+    <div class="card h-100">
+      <div class="card-body">
+        <p class="card-text">
+          <i class="bi bi-whatsapp icone-contato"></i><br />
+          <strong>WhatsApp</strong><br />
+          <a href="https://wa.me/5512988635412" target="_blank" rel="noopener">(12) 98863-5412</a>
+        </p>
 
-  <form method="post" action="{{ url_for('contato') }}">
-    <div class="card shadow p-4 mx-auto" style="max-width: 600px">
-      <h2 class="text-center mb-4">Entre em Contato</h2>
+        <p class="card-text">
+          <i class="bi bi-geo-alt icone-contato"></i><br />
+          <strong>Onde me encontrar</strong><br />
+          Domingos, das 8h às 14h<br />
+          Praça do Aquário
+        </p>
 
-      <p class="text-center text-muted mb-4">
-        Gostou de alguma peça? Entre em contato conosco!
-      </p>
-
-      <div class="mb-3">
-        <label for="nome" class="form-label">Nome:</label>
-        <input type="text" id="nome" name="nome" class="form-control"
-               placeholder="Digite seu nome" />
-      </div>
-
-      <div class="mb-3">
-        <label for="email" class="form-label">E-mail:</label>
-        <input type="email" id="email" name="email" class="form-control"
-               placeholder="Digite seu e-mail" />
-      </div>
-
-      <div class="mb-3">
-        <label for="mensagem" class="form-label">Mensagem:</label>
-        <textarea id="mensagem" name="mensagem" class="form-control" rows="5"
-                  placeholder="Digite sua mensagem"></textarea>
-      </div>
-
-      <div class="text-center">
-        <button type="submit" class="btn btn-rosa btn-lg px-4">
-          Enviar Mensagem
-        </button>
+        <a href="https://wa.me/5512988635412?text=Ol%C3%A1!%20Vim%20pelo%20site." target="_blank" rel="noopener" class="btn btn-whats btn-lg px-4">
+          <i class="bi bi-whatsapp"></i> Chamar no WhatsApp
+        </a>
       </div>
     </div>
-  </form>
-</section>
+  </div>
+
+  <div class="col-lg-7">
+    <div class="card h-100">
+      <div class="card-body">
+        <form id="formContato" class="text-start">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" id="nome" name="nome" class="form-control" placeholder="Digite seu nome" required />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail (opcional)</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Digite seu e-mail" />
+          </div>
+
+          <div class="mb-3">
+            <label for="mensagem" class="form-label">Mensagem</label>
+            <textarea id="mensagem" name="mensagem" class="form-control" rows="5" placeholder="Conte qual peça você gostou ou o que deseja encomendar" required></textarea>
+          </div>
+
+          <div class="text-center">
+            <button type="submit" class="btn btn-rosa btn-lg px-4">Enviar Mensagem</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.getElementById("formContato").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var nome = document.getElementById("nome").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var msg = document.getElementById("mensagem").value.trim();
+    var texto = "Olá! Meu nome é " + nome + ".\n\n" + msg;
+    if (email) { texto += "\n\nE-mail para contato: " + email; }
+    window.open("https://wa.me/5512988635412?text=" + encodeURIComponent(texto), "_blank", "noopener");
+  });
+</script>
 {% endblock %}

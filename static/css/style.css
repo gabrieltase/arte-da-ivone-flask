@@ -1,159 +1,193 @@
- header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+:root {
+  --rosa: #c2467a;
+  --rosa-escuro: #8f2c5a;
+  --rosa-claro: #f9dfe9;
+  --creme: #fdf6ef;
+  --verde: #7fb8a4;
+  --dourado: #c9a45c;
+  --texto: #4a3b40;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
-  width: 85%;
-  margin: 2%;
-  margin-left: 7%;
-  margin-right: 5%;
+  font-family: "Nunito", Arial, sans-serif;
+  background-color: var(--creme);
+  color: var(--texto);
 }
 
-nav ul {
-  display: flex;
-  gap: 3%;
-  list-style: none;
-  margin: 0%;
-  padding: 0%;
+h1, h2, h3, .card-title, .navbar-brand {
+  font-family: "Playfair Display", Georgia, serif;
 }
 
-.divCards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+h1, .titulo-pagina { color: var(--rosa-escuro); }
+
+/* ---------- Navbar ---------- */
+.navbar-rosa {
+  background-color: var(--rosa);
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
 }
 
-.divCards .card {
-  width: 48%;
-  margin: 1%;
-  padding: 15px;
+.logo-nav { height: 70px; width: auto; }
 
-  box-sizing: border-box;
+@media (min-width: 992px) {
+  .logo-nav { height: 100px; }
+}
 
-  border: none;
+.navbar-rosa .nav-link {
+  color: #fff;
+  font-weight: 600;
   border-radius: 20px;
-
-  text-align: center;
+  padding: 8px 18px;
+  transition: background-color 0.3s ease;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.navbar-rosa .nav-link:hover,
+.navbar-rosa .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+.navbar-rosa .navbar-toggler { border-color: rgba(255, 255, 255, 0.7); }
+.navbar-rosa .navbar-toggler:focus { box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.4); }
+.navbar-rosa .navbar-toggler-icon { filter: invert(1); }
 
-body {
-  font-family: Arial;
-  background-color: rgb(247, 247, 245);
-}
-
-header img {
-  width: 25%;
-  height: auto;
-  margin: 2%;
-}
-
-.form-group {
-  margin-bottom: 20%;
-}
-
-input,
-textarea {
-  width: 30%;
-  padding: 5%;
-  margin: 1%;
-  box-sizing: border-box;
-  border: 2px solid pink;
-  border-radius: 25%;
-  text-align: center;
-}
-
+/* ---------- Botões ---------- */
 .btn-rosa {
-  background-color: #e83e8c;
-  border-color: #e83e8c;
-  color: white;
+  background-color: var(--rosa);
+  border-color: var(--rosa);
+  color: #fff;
+}
+.btn-rosa:hover, .btn-rosa:focus {
+  background-color: var(--rosa-escuro);
+  border-color: var(--rosa-escuro);
+  color: #fff;
 }
 
-.btn-rosa:hover {
-  background-color: #d63384;
-  border-color: #d63384;
-  color: white;
+.btn-outline-rosa {
+  border-color: var(--rosa);
+  color: var(--rosa);
+}
+.btn-outline-rosa:hover {
+  background-color: var(--rosa);
+  color: #fff;
 }
 
+.btn-whats {
+  background-color: #25a244;
+  border-color: #25a244;
+  color: #fff;
+}
+.btn-whats:hover, .btn-whats:focus {
+  background-color: #1d8a39;
+  border-color: #1d8a39;
+  color: #fff;
+}
+
+/* ---------- Home: destaque ---------- */
+.hero-img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 12px 30px rgba(143, 44, 90, 0.2);
+}
+
+.faixa {
+  background-color: var(--rosa-claro);
+  border-radius: 16px;
+  border-top: 3px solid var(--dourado);
+}
+.faixa p { font-weight: 700; color: var(--rosa-escuro); }
+
+/* ---------- Cards ---------- */
 .card {
-  border: none;
-  border-radius: 20px;
-  background-color: blanchedalmond;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid var(--rosa-claro);
+  border-radius: 18px;
+  background-color: #fff;
+  box-shadow: 0 4px 14px rgba(143, 44, 90, 0.08);
+  text-align: center;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 22px rgba(143, 44, 90, 0.15);
 }
 
-.card-body {
-  padding: 25px;
-  
-}
+.card-body { padding: 25px; }
 
 .card-title {
-  color: #e83e8c;
-  font-weight: bold;
+  color: var(--rosa-escuro);
+  font-weight: 700;
   margin-bottom: 15px;
 }
 
-.card-text {
-  color:black;
-  line-height: 1.6;
+.card-text { color: var(--texto); line-height: 1.7; }
+
+/* ---------- Produtos ---------- */
+.foto-btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
 }
-
-.logo {
-  width: 40%;
-  height: auto;
-  border-radius: 0%;
-  transition: 0.3s;
-}
-
-
-
-
 
 .fotoArtesanato {
-    width: 100%;
-    max-width: 600px;
-    height: 350px;
-
-   
-    object-fit: cover;
-
-   
-    border-radius: 20px;
-
-   
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
-
-   
-    filter: brightness(1.05) contrast(1.05) saturate(1.10);
-
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
-.fotoArtesanato:hover {
-    transform: scale(1.03);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.30);
+/* ---------- Formulário ---------- */
+.form-control:focus {
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 0.2rem rgba(194, 70, 122, 0.25);
 }
 
+/* ---------- Rodapé ---------- */
+.rodape {
+  background-color: var(--rosa-escuro);
+  color: #fff;
+  border-top: 4px solid var(--dourado);
+}
+.rodape a { color: #fff; }
+.rodape-logo { height: 60px; width: auto; }
 
-/* Flask: destaque do item ativo da navbar (única regra nova) */
-.btn-rosa[aria-current="page"] {
-  background-color: #d63384;
-  border-color: #d63384;
+
+/* ---------- Rodapé profissional (sobrescreve o anterior) ---------- */
+.rodape { margin-top: 4rem; }
+.rodape a { text-decoration: none; }
+.rodape a:hover { text-decoration: underline; }
+.rodape-logo {
+  height: 70px;
+  width: auto;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 6px 10px;
+}
+.rodape-titulo {
+  font-size: 1.15rem;
+  color: var(--dourado);
+  margin-bottom: 1rem;
+}
+.rodape li { margin-bottom: 0.4rem; }
+.rodape i { color: var(--dourado); margin-right: 0.35rem; }
+.rodape-base {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Página de contato ---------- */
+.icone-contato {
+  display: inline-block;
+  font-size: 1.8rem;
+  color: var(--rosa);
+  margin-bottom: 0.25rem;
 }

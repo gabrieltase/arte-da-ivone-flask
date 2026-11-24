@@ -1,34 +1,34 @@
-import os
-
-from dotenv import load_dotenv
-from flask import Flask, flash, redirect, render_template, request, url_for
-
-# Lê o arquivo .env (Cap. 9.8) e disponibiliza as variáveis em os.getenv
-load_dotenv()
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# A secret_key é obrigatória para usar flash() (Cap. 8.3).
-# Em produção, defina SECRET_KEY no .env; o valor abaixo serve só para testes.
-app.secret_key = os.getenv("SECRET_KEY", "chave-de-desenvolvimento-troque-no-env")
-
-# Dados do catálogo: o template percorre esta lista com {% for %} (Cap. 6.4)
+# Lista de produtos do catálogo (arquivo dentro de static/img)
 PRODUTOS = [
-    {"nome": "Necessaire", "imagem": "img/necessaire.png"},
-    {"nome": "Estojo", "imagem": "img/estojo.png"},
-    {"nome": "Bolsas", "imagem": "img/foto_bolsa.png"},
-    {"nome": "Porta Óculos", "imagem": "img/porta_oculos3.png"},
-    {"nome": "Porta Cartão", "imagem": "img/porta_cartao.png"},
-    {"nome": "Porta Celular", "imagem": "img/foto_porta_celular.png"},
-    {"nome": "Carteiras", "imagem": "img/carteira.png"},
-    {"nome": "Pano de Prato e Bate Mão", "imagem": "img/pano_de_prato_e_bate_mao.png"},
-    {"nome": "Kits para Cozinha", "imagem": "img/foto_ki_cozinha.png"},
-    {"nome": "Kits de Necessaire", "imagem": "img/foto_kit_necessaire.png"},
+    {"titulo": "Necessaire", "img": "necessaire.png",
+     "desc": "Prática para organizar seus itens do dia a dia."},
+    {"titulo": "Estojo", "img": "estojo.png",
+     "desc": "Para guardar canetas, lápis e pequenos objetos."},
+    {"titulo": "Bolsas", "img": "foto_bolsa.png",
+     "desc": "Peças feitas à mão, cada uma com seu charme."},
+    {"titulo": "Porta Óculos", "img": "porta_oculos3.png",
+     "desc": "Protege seus óculos com delicadeza."},
+    {"titulo": "Porta Cartão", "img": "porta_cartao.png",
+     "desc": "Pequeno, útil e fácil de levar na bolsa."},
+    {"titulo": "Porta Celular", "img": "foto_porta_celular.png",
+     "desc": "Seu celular sempre à mão e protegido."},
+    {"titulo": "Carteiras", "img": "carteira.png",
+     "desc": "Carteiras artesanais para o dia a dia."},
+    {"titulo": "Pano de Prato e Bate Mão", "img": "pano_de_prato_e_bate_mao.png",
+     "desc": "Bordados à mão para deixar a cozinha mais bonita."},
+    {"titulo": "Kits para Cozinha", "img": "foto_ki_cozinha.png",
+     "desc": "Conjuntos para presentear ou renovar a cozinha."},
+    {"titulo": "Kits de Necessaire", "img": "foto_kit_necessaire.png",
+     "desc": "Conjuntos de necessaires combinando."},
 ]
 
 
 @app.route("/")
-def home():
+def index():
     return render_template("index.html")
 
 
@@ -42,23 +42,11 @@ def produtos():
     return render_template("produtos.html", produtos=PRODUTOS)
 
 
-@app.route("/contato", methods=["GET", "POST"])
+@app.route("/contato")
 def contato():
-    if request.method == "POST":
-        # .get() evita o erro 400 se algum campo faltar (Cap. 9.5)
-        nome = request.form.get("nome", "").strip()
-        email = request.form.get("email", "").strip()
-        mensagem = request.form.get("mensagem", "").strip()
-
-        if not (nome and email and mensagem):
-            flash("Preencha nome, e-mail e mensagem.", "danger")
-        else:
-            flash(f"Obrigada, {nome}! Sua mensagem foi enviada com sucesso.", "success")
-
-        # Post/Redirect/Get: evita reenvio do formulário ao apertar F5 (Cap. 9.5)
-        return redirect(url_for("contato"))
-
     return render_template("contato.html")
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    # host 0.0.0.0 aceita conexões externas (necessário na EC2); porta 5000 liberada no Security Group
+    app.run(host="0.0.0.0", port=5000, debug=False)

@@ -1,31 +1,60 @@
 {% extends "base.html" %}
 
-{% block titulo %}Artes da Ivone - Produtos{% endblock %}
+{% block titulo %}Produtos | Artes da Ivone{% endblock %}
 
 {% block conteudo %}
-<section>
-  <h2 class="display-4 fw-bold text-center">Catálogo de Produtos</h2>
-  <p class="lead text-center text-muted">
-    Consulte as peças Disponíveis
-  </p>
-  <div class="divCards row g-4">
+<h1 class="display-4 fw-bold text-center">Catálogo de Produtos</h1>
+<p class="lead text-center text-muted mb-4">
+  Clique na foto para ampliar e fale comigo para encomendar
+</p>
 
-    {# A lista "produtos" vem do app.py; cada volta do laço gera um card #}
-    {% for produto in produtos %}
-    <div class="card col-12 col-md-6 col-lg-3">
-      <div class="card-body">
-        <h3 class="card-title">{{ produto.nome }}</h3>
-        <p class="card-text">
-          <img class="fotoArtesanato"
-               src="{{ url_for('static', filename=produto.imagem) }}"
-               alt="Artesanato feito à mão">
-        </p>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+  {% for p in produtos %}
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body d-flex flex-column">
+        <h2 class="card-title h3">{{ p.titulo }}</h2>
+        <button type="button" class="foto-btn mb-3" data-bs-toggle="modal" data-bs-target="#modalFoto"
+                data-src="{{ url_for('static', filename='img/' ~ p.img) }}"
+                data-titulo="{{ p.titulo }}" aria-label="Ampliar foto: {{ p.titulo }}">
+          <img class="fotoArtesanato" src="{{ url_for('static', filename='img/' ~ p.img) }}"
+               alt="{{ p.titulo }} feito à mão" loading="lazy" />
+        </button>
+        <p class="card-text">{{ p.desc }}</p>
+        <a href="https://wa.me/5512988635412?text={{ ('Olá! Tenho interesse em: ' ~ p.titulo) | urlencode }}"
+           target="_blank" rel="noopener" class="btn btn-whats mt-auto">
+          <i class="bi bi-whatsapp"></i> Encomendar
+        </a>
       </div>
     </div>
-    {% else %}
-    <p class="text-center">Nenhum produto cadastrado.</p>
-    {% endfor %}
-
   </div>
-</section>
+  {% endfor %}
+</div>
+{% endblock %}
+
+{% block extras %}
+<div class="modal fade" id="modalFoto" tabindex="-1" aria-labelledby="modalFotoTitulo" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title h5" id="modalFotoTitulo"></h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <img id="modalFotoImg" class="img-fluid rounded" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.getElementById("modalFoto").addEventListener("show.bs.modal", function (e) {
+    var b = e.relatedTarget;
+    document.getElementById("modalFotoImg").src = b.dataset.src;
+    document.getElementById("modalFotoImg").alt = b.dataset.titulo + " feito à mão";
+    document.getElementById("modalFotoTitulo").textContent = b.dataset.titulo;
+  });
+</script>
 {% endblock %}
